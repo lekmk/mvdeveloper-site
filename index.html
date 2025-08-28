@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maycon Lima — Desenvolvedor</title>
+  <meta name="description" content="Portfólio de Maycon Lima — 
+  JavaScript, Python, PHP, HTML, CSS, MySQL e SQLite." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Ícones de linguagens -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="container header">
+    <a class="brand" href="./" aria-label="Página inicial">
+      <span class="dot" aria-hidden="true"></span> mvdeveloper
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="container hero" aria-label="Apresentação">
+      <div class="hero__text">
+        <h1>Maycon Lima</h1><br><br>
+        <p class="subtitle">
+        Desenvolvedor Web & API<br>
+        JS · Python · PHP · HTML · CSS · MySQL · SQLite · Lua
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#contato">Fale comigo</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/SEU-LINK-AQUI" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero__photo" style="--dx: 123px; --dy: 100px;">
+        <img src="./assets/img/perfil.jpg" alt="Foto de Maycon Lima" width="320" height="320" />
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="container section" aria-labelledby="skills-title">
+      <h2 id="skills-title">Habilidades</h2>
+      <p class="section__lead">Tecnologias que domino no dia a dia.</p>
+      <div class="skills">
+        <div class="skill"><i class="devicon-javascript-plain" aria-hidden="true"></i><span>JavaScript</span></div>
+        <div class="skill"><i class="devicon-python-plain" aria-hidden="true"></i><span>Python</span></div>
+        <div class="skill"><i class="devicon-php-plain" aria-hidden="true"></i><span>PHP</span></div>
+        <div class="skill"><i class="devicon-html5-plain" aria-hidden="true"></i><span>HTML</span></div>
+        <div class="skill"><i class="devicon-css3-plain" aria-hidden="true"></i><span>CSS</span></div>
+        <div class="skill"><i class="devicon-mysql-plain" aria-hidden="true"></i><span>MySQL</span></div>
+        <div class="skill"><i class="devicon-sqlite-plain" aria-hidden="true"></i><span>SQLite</span></div>
+        <div class="skill"><i class="devicon-lua-plain" aria-hidden="true"></i><span>Lua</span></div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="container section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contato</h2>
+      <p class="section__lead">Para projetos, parcerias ou oportunidades:</p>
+      <p class="hint">Clique no e-mail para copiar.</p>
+
+      <div class="contact-card" role="group" aria-label="Formas de contato">
+        <button class="btn copy" data-copy=" mvdeveloper.dev@gmail.com" aria-label="Copiar e-mail">
+          mvdeveloper.dev@gmail.com
+        </button>
+
+        <a class="btn link" href="https://wa.me/5521998955925" target="_blank" rel="noopener" aria-label="WhatsApp">
+          WhatsApp
+        </a>
+
+        <a class="btn link" href="https://github.com/lekmk" target="_blank" rel="noopener" aria-label="GitHub">
+          GitHub
+        </a>
+
+        <a class="btn link" href="https://www.linkedin.com/in/SEU-LINK-AQUI" target="_blank" rel="noopener" aria-label="LinkedIn">
+          LinkedIn
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>© <span id="year"></span> Maycon Lima · mvdeveloper.online</p>
+  </footer>
+  <script>
+    document.addEventListener("contextmenu", e => e.preventDefault()); // bloqueia clique direito
+    document.addEventListener("keydown", e => {
+        if (e.ctrlKey && (e.key === "u" || e.key === "c" || e.key === "s" || e.key === "a")) {
+        e.preventDefault(); // bloqueia Ctrl+U, Ctrl+C, Ctrl+S
+        }
+    });
+  </script>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
