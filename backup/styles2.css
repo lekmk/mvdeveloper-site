@@ -1,0 +1,10 @@
+  .hero__photo img{ 
+    width: min(320px, 60%); 
+    height:auto; 
+    border-radius:22px; 
+    border:1px solid var(--border); 
+    box-shadow: 0 10px 40px rgba(0,0,0,.35); 
+    object-fit:cover; 
+    transform: translate(var(--dx), var(--dy)); 
+    transition: transform .15s ease; 
+  }

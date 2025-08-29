@@ -1,49 +1,57 @@
 :root{
-  --bg: #0b0f14;
-  --card: #111823;
-  --text: #e7edf5;
-  --muted: #9fb3c8;
-  --brand: #5eead4;
-  --brand-2: #38bdf8;
-  --border: #1e293b;
+  --bg:#0b1220;
+  --panel:#0f172a;
+  --muted:#8aa0b6;
+  --text:#e7effa;
+  --accent: #60a5fa;  /* azul */
+  --accent2:#34d399; /* verde */
+  --border:#223148;
 }
 
-body {
-  -webkit-user-select: none; /* Chrome/Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE/Edge */
-  user-select: none;         /* Padrão */
-}
-
-*{ box-sizing: border-box; }
-html, body{ height:100%; }
+*{ box-sizing:border-box }
+html,body{ height:100% }
 body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  background: radial-gradient(1200px 800px at 80% -20%, rgba(94,234,212,0.10), transparent 60%),
-              radial-gradient(1000px 600px at 10% -10%, rgba(56,189,248,0.10), transparent 60%),
-              var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+  margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text); background:var(--bg); overflow-x:hidden;
 }
 
-.container{ width:min(1100px, 92%); margin-inline:auto; }
+/* Canvas ocupa tudo */
+#bg{
+  position:fixed; inset:0; width:100%; height:100%; z-index:-2;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(56,189,248,.10), transparent 60%),
+              radial-gradient(1000px 600px at 110% 10%, rgba(94,234,212,.10), transparent 60%),
+              var(--bg);
+}
 
+/* Glow suave no topo */
+.top-glow{
+  position:fixed; inset: -40px -40px auto -40px; height: 220px; z-index:-1;
+  background: radial-gradient(60% 140% at 50% -20%, rgba(99,102,241,.18), transparent 55%);
+  filter: blur(4px);
+}
+
+.container{ width:min(1100px, 92%); margin-inline:auto }
+
+/* Header */
 .header{
   display:flex; align-items:center; justify-content:space-between;
-  padding: 18px 0;
+  padding:20px 0;
 }
-.brand{
-  display:inline-flex; align-items:center; gap:10px;
-  font-weight:800; letter-spacing:0.3px; color:var(--text); text-decoration:none;
+
+.brand img.logo {
+  height: 60px;          /* ajuste para o tamanho desejado */
+  display: block;
+  object-fit: contain;   /* garante que não distorça */
 }
+
 .brand .dot{
-  width:12px; height:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2));
-  border-radius:50%;
-  box-shadow: 0 0 18px rgba(94,234,212,0.6);
+  inline-size:10px; block-size:10px; border-radius:50%;
+  background:linear-gradient(180deg, #14b8a6, #38bdf8);
+  box-shadow: 0 0 10px rgba(56,189,248,.35);
 }
-.nav a{ color:var(--muted); text-decoration:none; margin-left:1040px; font-weight:600; }
-.nav a:hover{ color:var(--text); }
+
+.nav a{ color:var(--text); text-decoration:none;  font-weight:600; }
+.nav a:hover{ color:var(--accent); }
 
 :root { --below-hero: 160px; } /* ajuste o valor que quiser */
 
@@ -65,43 +73,34 @@ body{
 @media (min-width: 861px) {
   .hero__text {
     position: relative;
-    top: 120px; /* aumenta ou diminui conforme precisar */
+    top: 70px; /* aumenta ou diminui conforme precisar */
   }
 }
 
 .subtitle{ color:var(--muted); font-weight:600; margin:0 0 20px; }
 
-.cta{ display:flex;
-  gap:12px; 
-  flex-wrap:wrap; 
-  position: relative;
-  top: 20px;        /* positivo → desce | negativo → sobe */
-  left: -5px;
-}
+
+.cta{ display:flex; gap:12px; flex-wrap:wrap }
 
 .btn{
-  border:1px solid var(--border); background:transparent; color:var(--text);
-  padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none; cursor:pointer;
-  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text); padding:12px 16px; border-radius:12px; font-weight:700;
+  text-decoration:none; cursor:pointer; position:relative; overflow:hidden;
+  transition: transform .12s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
-.btn {
-  border: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(94,234,212,0.18), rgba(56,189,248,0.18));
-  color: var(--text);
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+.btn.primary{
+  background: linear-gradient(135deg, rgba(56,189,248,.18), rgba(94,234,212,.18));
 }
-
-.btn:hover {
-  background: linear-gradient(135deg, rgba(94,234,212,0.35), rgba(56,189,248,0.35));
-  border-color: #2b3b52;
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(56,189,248,.12);
+  border-color:#2b3b52;
 }
+.btn.ghost{ background:transparent }
 
+/* Foto */
 .hero__photo{
   display:flex; justify-content:center; align-items:center;
   position: relative;
@@ -109,68 +108,161 @@ body{
   --dx: 0px;   /* esquerda(−) / direita(+) */
   --dy: 0px;   /* cima(−) / baixo(+) */
 }
+
 .hero__photo img {
   width: min(250px, 60%);
-  aspect-ratio: 1 / 1;   /* mantém sempre quadrado */
+  aspect-ratio: 1 / 1;
   border-radius: 22px;
   border: 1px solid var(--border);
   box-shadow: 0 10px 40px rgba(0,0,0,.35);
   object-fit: cover;
   transform: translate(var(--dx), var(--dy));
   transition: transform .15s ease;
+  border-color: #38bdf8;
+  box-shadow: 0 0 25px rgba(56,189,248,.6);
+  transform: translate(var(--dx), var(--dy));
 }
 
-:root{ --below-hero: 320px; } /* ajuste: 120–240px */
+/* SKILLS */
+.card.skill{
+  display: inline-flex;        /* vira um chip flexível */
+  align-items: center;         /* alinha verticalmente */
+  gap: 20px;                   /* <<< espaço entre ícone e texto */
+  /* o resto do estilo do .card você já tem */
+}
 
-.hero{ margin-bottom: var(--below-hero); }
+/* tamanho/ajuste de baseline dos ícones */
+.card.skill i{
+  font-size: 32px;             /* 26–28 se preferir maior */
+  line-height: 1;
+  transform: translateY(1px);  /* corrige a “quedinha” do devicon */
+}
 
-/* garante que só a 1ª seção após o herói receba o “empurrão” */
-.hero + .section{ margin-top: 0; }  /* opcional, só pra prevenir somas de margens */
+/* evita quebra esquisita do texto do chip */
+.card.skill span{
+  white-space: nowrap;
+}
 
+.card.contact-actions {
+  position: relative;
+  transform: translate(1040px, 15px); /* → direita 40px, ↓ baixo 15px */
+}
 
-.section{ padding: 38px 0; }
-.section h2{ font-size: clamp(24px, 3.5vw, 36px); margin:0 0 6px; }
-.section__lead{ color:var(--muted); margin:0 0 18px; }
+.muted {
+  color: var(--muted); /* Mantém a cor global do tema */
+  margin: 0 0 18px;
+}
 
-.skills{
+.grid{
   display:grid; gap:14px;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
-.skill{
-  display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--card);
-  border:1px solid var(--border); border-radius:16px;
+
+.card{
+  background: rgba(15,23,42,.7);
+  border:1px solid var(--border);
+  padding:16px 18px; border-radius:16px; font-weight:700;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .2s ease;
+  position:relative; isolation:isolate;
 }
-.skill i{ font-size:28px; }
-.skill span{ font-weight:700; }
-
-.contact-card{
-  display:flex; flex-wrap:wrap; gap:12px;
-  background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px;
+.card:before{
+  content:""; position:absolute; inset:0; border-radius:inherit; z-index:-1;
+  background: radial-gradient(60% 180% at 10% 0%, rgba(56,189,248,.18), transparent 50%),
+              radial-gradient(60% 180% at 90% 110%, rgba(94,234,212,.14), transparent 40%);
+  opacity:.0; transition: opacity .2s ease;
 }
-
-.contact-card .btn:hover {
-  background: linear-gradient(135deg, rgba(94,234,212,0.35), rgba(56,189,248,0.35));
-  border-color: #2b3b52;
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56,189,248,.10);
+  border-color:#2b3b52;
 }
+.card:hover:before{ opacity:.8 }
 
-.btn.copy{ background:#0f1622; }
-.btn.link{ background:#0f1622; }
+/* CONTATO */
+.contact{ padding: 40px 0 60px }
+.contact-actions{ display:flex; gap:12px; flex-wrap:wrap }
 
-.hint{ color:var(--muted); margin-top:10px; }
+/* Footer */
+.footer{ padding: 16px 0 40px; color:var(--muted); font-size:14px; text-align:center }
 
-.footer{
-  padding: 40px 0 26px;
+.footer {
+  padding: 16px 0 40px;
   color: var(--muted);
-  border-top: 1px solid var(--border);
-  margin-top: 30px;
-  text-align:center;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;                /* Espaço ANTES da linha */
+  border-top: 1px solid var(--border);  /* A linha separadora */
+  padding-top: 40px;               /* Espaço DEPOIS da linha */
 }
 
-@media (max-width: 860px){
+/* REVEAL animations */
+.reveal{ opacity:0; transform: translateY(14px); transition: all .6s cubic-bezier(.2,.75,.2,1) }
+.reveal.visible{ opacity:1; transform:none }
+
+/* Responsivo */
+@media (max-width: 880px){
   .hero{ grid-template-columns: 1fr; }
-  .hero__photo{ order:-1; padding-top:10px; }
+  .hero_photo img{ margin:20px 0 0 }
 }
 
+/* === Neon lateral + hover suave azul (reutilizável) === */
+:root{
+  --accent: #38bdf8;                  /* azul ciano */
+  --accent-soft: rgba(56,189,248,.14);/* fundo leve no hover */
+  --accent-border: rgba(56,189,248,.45);
+  --accent-glow: rgba(56,189,248,.18);
+}
+
+/* aplique a classe .neon em qualquer botão/pílula que quiser esse efeito */
+.neon{
+  position: relative;
+  isolation: isolate;                 /* garante o blend só no botão */
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .15s ease;
+  /* NÃO mexo no padding/border-radius atuais pra manter seu formato */
+}
+
+/* “barras” de neon nas laterais */
+.neon::before,
+.neon::after{
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  width: 3px;                         /* largura inicial do brilho */
+  border-radius: 4px;
+  background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  filter: blur(6px);
+  opacity: .85;
+  transition: width .25s ease, filter .25s ease, opacity .2s ease;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.neon::before{ left: -1px; }
+.neon::after { right: -1px; }
+
+/* hover: fundo suave translúcido + borda um pouco mais azul + glow discreto */
+.neon:hover{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2)),
+    var(--accent-soft);
+  border-color: var(--accent-border);
+  box-shadow:
+    0 0 0 1px rgba(56,189,248,.12) inset,
+    0 0 24px var(--accent-glow);
+  transform: translateY(-1px);
+}
+.neon:hover::before,
+.neon:hover::after{
+  width: 6px;                         /* cresce só um pouco */
+  filter: blur(10px);                  /* brilho mais soft */
+  opacity: 1;
+}
+
+/* clique: sem saltar demais */
+.neon:active{
+  transform: translateY(0);
+  box-shadow: 0 0 0 1px rgba(56,189,248,.22) inset, 0 0 18px rgba(56,189,248,.12);
+}
 
 /* evita qualquer repetição do fundo ao esticar/encolher */
 body{
@@ -239,3 +331,4 @@ body{
   /* se quiser empurrar o bloco abaixo do herói de forma estável */
   .hero{ margin-bottom: 140px; } /* ajuste à vontade */
 }
+
